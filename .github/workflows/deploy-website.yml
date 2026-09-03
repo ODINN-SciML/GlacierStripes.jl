@@ -1,0 +1,30 @@
+name: Deploy glacier stripes website
+on:
+  push:
+    branches: [main]
+    paths: ["website/**", "scripts/generate_website.jl", "src/**", "Project.toml", "Manifest.toml", ".github/workflows/deploy-website.yml"]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: { name: github-pages }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: julia-actions/setup-julia@v2
+        with: { version: '1.11' }
+      - uses: julia-actions/cache@v2
+      - name: Instantiate Julia environment
+        run: julia --project=. -e 'using Pkg; Pkg.instantiate()'
+      - name: Generate glacier images and catalogue
+        run: julia --project=. scripts/generate_website.jl
+        env: { SLEIPNIR_PREPRO_DIR: '${{ vars.SLEIPNIR_PREPRO_DIR }}' }
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with: { path: website }
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

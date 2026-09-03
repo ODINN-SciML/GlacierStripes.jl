@@ -1,0 +1,11 @@
+# Add the curated RGI IDs here. Names and coordinates are read from Sleipnir.
+glaciers = [
+  "RGI60-11.01450", # Aletsch
+  "RGI60-11.03232", # Ossoue
+]
+
+[generation]
+start_year = 1951
+end_year = 2025
+climate_source = "ERA5"
+mass_balance_source = "WGMS"

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Glacier climate stripes</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="masthead">
+    <p class="eyebrow">GlacierStripes.jl</p>
+    <h1>Climate at the ice edge</h1>
+    <p class="intro">Explore annual temperature and precipitation stripes for selected Alpine and Pyrenean glaciers.</p>
+  </header>
+  <main class="layout">
+    <section class="map-panel" aria-label="Glacier map"><div id="map"></div></section>
+    <section class="detail-panel" aria-live="polite">
+      <div class="detail-heading">
+        <p class="eyebrow">Selected glacier</p>
+        <h2 id="glacier-name">Choose a point on the map</h2>
+        <p id="glacier-meta" class="meta">The climate stripes will appear here.</p>
+      </div>
+      <div id="stripes" class="stripes" hidden>
+        <figure><img id="temperature-image" alt="Annual temperature climate stripes"><figcaption>Annual mean temperature</figcaption></figure>
+        <figure><img id="precipitation-image" alt="Annual precipitation climate stripes"><figcaption>Annual mean precipitation</figcaption></figure>
+      </div>
+      <p id="status" class="status">Loading glacier catalogue...</p>
+    </section>
+  </main>
+  <footer>Climate data generated with GlacierStripes.jl and Sleipnir.jl.</footer>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="app.js"></script>
+</body>
+</html>
